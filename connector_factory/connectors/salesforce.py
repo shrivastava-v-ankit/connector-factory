@@ -95,6 +95,13 @@ class Salesforce(Decorator):
 
     def get_columns(self, soql):
         table = self.get_table_name(soql=soql)
+
+        if not self.session:
+            _, _, message = self.get_session(None)
+
+        if not self.session:
+            raise ValueError(message)
+
         _module = getattr(self.session, table)
         desc = _module.describe()
 
@@ -181,7 +188,10 @@ class Salesforce(Decorator):
                 if "attributes" in df.columns:
                     df.drop(["attributes"], axis=1, inplace=True)
                 df = pandas.json_normalize(df.to_dict(orient="records"))
-                df = df[columns].copy(deep=True)
+                try:
+                    df = df[columns].copy(deep=True)
+                except:
+                    pass
 
             return df
 
