@@ -39,6 +39,7 @@ class Decorator(ABC):
     def destroy(self):
         try:
             if (self.session):
+                self.session.close()
                 self.session.remove()
                 self.engine.dispose(close=True)
                 self.session = None
@@ -151,7 +152,6 @@ class Decorator(ABC):
 
             rows:           If rows in case of DDL queries else none.
         """
-        print("*************")
         logger.info(
             "Got pandas dataframe to insert/update in table {table_name}")
         message = None

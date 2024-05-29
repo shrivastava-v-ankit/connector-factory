@@ -23,7 +23,7 @@ class S3Select(Decorator):
 
     def validate_config(self):
         super().validate_config()
-        logger.info("Validating the paylod for the Redshift connection")
+        logger.info("Validating the paylod for the S3select connection")
         message = ""
 
         if not self.is_valid:
@@ -35,6 +35,7 @@ class S3Select(Decorator):
             compression = self.config.get("compression", None)
             record_delimiter = self.config.get("record_delimiter", None)
             field_delimiter = self.config.get("field_delimiter", None)
+            region = self.config.get("region", None)
 
             if not bucket or not file or not file_type:
                 message = f"Invalid connection details. file, password and file_type are required.{os.linesep}"
@@ -63,6 +64,9 @@ class S3Select(Decorator):
 
             if not field_delimiter:
                 message = f"{message}Field_delimiter is not provided. Default ',' will be used.{os.linesep}"
+
+            if not region:
+                message = f"{message}Region is not provided. Default 'us-east-1' will be used.{os.linesep}"
 
             if self.is_valid:
                 logger.info("Connection is valid")

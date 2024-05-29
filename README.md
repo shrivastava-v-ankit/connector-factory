@@ -23,10 +23,17 @@ Connector factory is wrapper on various sources and for database source it uses 
 * Redshift
 * Salesforce
 * S3Select
+* Databricks
+* Synapse
+* DynamoDB
+* IBM DB2
 ```
 
-* Note: Only select operations are supported for Salesforce and S3Select.
-Connector factory can be enhanced for all the sqlalchemy supported database.
+* Note: Only select operations are supported for Salesforce and S3Select and limited functionality. These are not managed by the usage of sqlalchemy.
+
+* Note: Connector factory can be enhanced for all the sqlalchemy supported database.
+
+* Note: DynamoDB is supported via PyDynao. Please check the features and limitations at [PyDynamoDB](https://github.com/passren/PyDynamoDB/wiki).
 
 Connector factory also provide the facility to create the connections for Salesforce
 using simple-saleforce python package. Only Select query is supported in Salesforce. For advance usage it exposes the Salesforce object (simple-saleforce python package) which can be used as per the requirements. Refer [simple-saleforce](https://pypi.org/project/simple-salesforce/) for more detail.
@@ -45,6 +52,10 @@ By default connector-factory is installed with only SQlite3 support only. For ot
 * mariadb
 * salesforce
 * s3select
+* databricks
+* synapse
+* db2
+* dynamodb
 * bigquery (upcomming)
 * all (For all supported types)
 
@@ -61,7 +72,6 @@ config = {
   "database": "site.db"
   }
 db = ConnectorFactory(connector_type="sqlite", config=config)
-db.create_session()
 
 db.execute_sql(sql="create table test (id int PRIMARY KEY)")
 db.execute_sql(sql="insert into test values (1)")
@@ -95,6 +105,10 @@ if rows_copy:
 *   redshift
 *   salesforce
 *   s3select
+*   databricks
+*   synapse
+*   db2
+*   dynamodb
 ```
 
 ### Configuration parameters for sqlite:
@@ -272,6 +286,96 @@ if rows_copy:
 -----
 
 
+### Connection parameters for Synapse:
+-----
+-----
+```python
+* connector_type: synapse
+* config = {
+    "username": "<synapse_user>",
+    "password": "<user_password>",
+    "host": "<hostname_of_synapse_service>",
+    "port": "<port_of_synapse_service>",
+    "database": "<database_name>",
+    "driver": "<driver_to_connect_synapse_service>",
+    "trust_certificate": "<trust_the_synapse_connection>",
+    "authentication_with": "<authentication_type_of_synapse_service>",
+    "connection_timeout": "<connection_timeout_to_synapse_service>"
+}
+```
+
+**Details:**
+* username: (Required)=> Name of user for connection.
+* password (Required)=> Password of user.
+* host: (Required)=> Host of Synapse service.
+* port: (Optional)=> Port of Synapse service. Default to 1433
+* database: (Required)=> Database name.
+* driver: (Optional)=> Name of driver to use. Default to ODBC Driver 17 for SQL Server.
+* trust_certificate: (Optional)=> Trust the connection with certificate. Default to no.
+* authentication_with: (Optional)=> Default to None and not in use to authenticate with. If service principal or AD authenitication is used then pass appropriate value.
+* connection_timeout: (Optional)=> Connection timeout. Default to 30.
+-----
+
+
+### Connection parameters for Databricks:
+-----
+-----
+```python
+* connector_type: databricks
+* config = {
+    "hostname": "<hostname_of_databricks_service>",
+    "token": "<pat_token_of_databricks_as_password>",
+    "http_path": "<path_of_warehouse_or_cluster>",
+    "catalog": "<catalog_name_of_databricks>",
+    "schema": "<schema_name_of_databricks>",
+}
+```
+
+**Details:**
+* hostname: (Required)=> Databricks hostname.
+* token (Required)=> Pat token of user.
+* http_path: (Required)=> Path of warehouse or cluster.
+* catalog: (Required)=> Unity catalog name
+* schema: (Required)=> Schema name under catalog.
+-----
+
+
+### Connection parameters for IBM DB2:
+-----
+-----
+```python
+* connector_type: db2
+* config = {
+    "username": "<hostname_of_databricks_service>",
+    "password": "<pat_token_of_databricks_as_password>",
+    "host": "<path_of_warehouse_or_cluster>",
+    "port": "<catalog_name_of_databricks>",
+    "database": "<schema_name_of_databricks>",
+}
+```
+
+**Details:**
+* username: (Required)=> Name of user for connection.
+* password (Required)=> Password of user.
+* host: (Required)=> Host of IBM DB2 Server.
+* port: (Optional)=> Port of IBM DB2 Server. Default to 50000
+* database: (Required)=> Database name.
+-----
+
+
+### Connection parameters for DynamoDB:
+-----
+-----
+```python
+* connector_type: dynamodb
+* config = {
+    "region": "<aws_region_of_dynamodb>"
+}
+```
+
+**Details:**
+* region: (Optional)=> AWS Region. Default is us-east-1
+-----
 
 
 ### Development Setup

@@ -21,7 +21,12 @@ SUPPORTED_ENGINE = ["postgre",
                     "sqlite",
                     "salesforce",
                     "s3select"
-                    "aws"]
+                    "aws",
+                    "databricks",
+                    "synapse",
+                    "db2",
+                    "dynamodb"
+                    ]
 
 SUPPORTED_SECRET_MANAGER_CLOUD = ["aws", "gcp"]
 
@@ -80,6 +85,10 @@ class ConnectorFactory(object):
                                     * sqlite
                                     * redshift
                                     * salesforce
+                                    * databricks
+                                    * synapse
+                                    * db2
+                                    * dynamodb
             config (dict):  (Required) => Dictonary of connection details like username, password, host, port etc.
             debug (bool, optional): (Optional) => Detailed logs for debugging.. Defaults to False.
         """
@@ -117,6 +126,18 @@ class ConnectorFactory(object):
             self.is_connector = True
         elif self.engine_type in ["aws"]:
             from .connectors.aws import Aws as Connector
+            self.is_connector = True
+        elif self.engine_type in ["databricks"]:
+            from .connectors.databricks import Databricks as Connector
+            self.is_connector = True
+        elif self.engine_type in ["synapse"]:
+            from .connectors.synapse import Synapse as Connector
+            self.is_connector = True
+        elif self.engine_type in ["db2"]:
+            from .connectors.db2 import Db2 as Connector
+            self.is_connector = True
+        elif self.engine_type in ["dynamodb"]:
+            from .connectors.dynamodb import DynamoDb as Connector
             self.is_connector = True
 
         if self.is_connector:
@@ -279,5 +300,15 @@ class ConnectorFactory(object):
 
         if self.is_connector:
             return self.connection.get_df(sql=sql, chunk_size=chunk_size)
+        else:
+            return f"Invalid connection type : {self.engine_type}. Valid type is anyone from {SUPPORTED_ENGINE}"
+
+    def destroy(self):
+        """
+        Function to close the sessions.
+        """
+
+        if self.is_connector:
+            return self.connection.destroy()
         else:
             return f"Invalid connection type : {self.engine_type}. Valid type is anyone from {SUPPORTED_ENGINE}"
