@@ -43,206 +43,176 @@ python_version = f"{sys.version_info[0]}.{sys.version_info[1]}"
 
 base = [
     # Powerful data structures for data analysis, time series, and statistics
-    "pandas==2.0.3",
+    "pandas<=2.2.2",
     # Database Abstraction Library
-    "sqlalchemy==1.4.49",
-    "greenlet==2.0.2",
-    "numpy==1.24.4" if python_version in [
-        "3.8"] else "numpy==1.25.2" if python_version in [
-            "3.9", "3.10", "3.11"] else "numpy",
-    "python-dateutil==2.8.2",
-    "pytz==2023.3",
-    "six==1.16.0",
-    "tzdata==2023.3"
+    "sqlalchemy<=2.0.31",
+    "greenlet<=3.0.3",
+    "numpy<=2.0.0",
+    "python-dateutil<=2.9.0",
+    "pytz<=2024.1",
+    "six<=1.16.0",
+    "tzdata<=2024.1",
+    "typing-extensions<=4.12.2"
 ]
 
 aws = s3select = [
     # The AWS SDK for Python
-    "boto3==1.28.22",
-    "botocore==1.31.22",
-    "jmespath==1.0.1",
-    "python-dateutil==2.8.2",
-    "s3transfer==0.6.1",
-    "six==1.16.0",
-    "urllib3==1.26.16"
+    "boto3<=1.34.137",
+    "botocore<=1.34.137",
+    "jmespath<=1.0.1",
+    "s3transfer<=0.10.2",
+    "urllib3<=1.26.19"
 ]
 
-gcp = [
-    # This library simplifies using Google’s various server-to-server authentication mechanisms to access Google APIs.
-    "google-auth==2.22.0",
-    # This library provides an httplib2 transport for google-auth.
-    "google-auth-httplib2==0.1.0",
-    # Google API Client Library for Python
-    "google-api-python-client==2.96.0",
-    # Google Secret Manager API API client library
-    "google-cloud-secret-manager==2.16.3",
-    "cachetools==5.3.1",
-    "certifi==2023.7.22",
-    "charset-normalizer==3.2.0",
-    "google-api-core==2.11.1",
-    "googleapis-common-protos==1.60.0",
-    "grpc-google-iam-v1==0.12.6",
-    "grpcio==1.56.2",
-    "grpcio-status==1.56.2",
-    "httplib2==0.22.0",
-    "idna==3.4",
-    "proto-plus==1.22.3",
-    "protobuf==4.24.0",
-    "pyasn1==0.5.0",
-    "pyasn1-modules==0.3.0",
-    "pyparsing==3.1.1",
-    "requests==2.31.0",
-    "rsa==4.9",
-    "six==1.16.0",
-    "uritemplate==4.1.1",
-    "urllib3==1.26.16"
-]
+# gcp = [
+#     # This library simplifies using Google’s various server-to-server authentication mechanisms to access Google APIs.
+#     "google-auth",
+#     # This library provides an httplib2 transport for google-auth.
+#     "google-auth-httplib2",
+#     # Google API Client Library for Python
+#     "google-api-python-client",
+#     # Google Secret Manager API API client library
+#     "google-cloud-secret-manager",
+#     "cachetools",
+#     "certifi<=2024.6.2",
+#     "charset-normalizer<=3.3.2",
+#     "google-api-core",
+#     "googleapis-common-protos",
+#     "grpc-google-iam-v1",
+#     "grpcio",
+#     "grpcio-status",
+#     "httplib2",
+#     "idna<=3.7",<=2.32.3
+#     "proto-plus",
+#     "protobuf",
+#     "pyasn1",
+#     "pyasn1-modules",
+#     "pyparsing<=3.1.2",
+#     "requests<=2.32.3",
+#     "rsa",
+#     "uritemplate",
+#     "urllib3<=1.26.19"
+# ]
 
-bigquery = [
-    # SQLAlchemy dialect for BigQuery
-    "pybigquery==0.10.2" if python_version in [
-        "3.8", "3.9"] else "pybigquery==0.5.0" if python_version in [
-            "3.10", "3.11"] else "pybigquery",
-    "sqlalchemy==1.4.49",
-    "cachetools==5.3.1",
-    "certifi==2023.7.22",
-    "charset-normalizer==3.2.0",
-    "future==0.18.3",
-    "google-api-core==2.11.1",
-    "google-auth==2.22.0",
-    "google-cloud-bigquery==3.11.4",
-    "google-cloud-core==2.3.3",
-    "google-resumable-media==2.5.0",
-    "googleapis-common-protos==1.60.0",
-    "google-crc32c==1.5.0",
-    "greenlet==2.0.2",
-    "grpcio==1.56.2",
-    "grpcio-status==1.56.2",
-    "idna==3.4",
-    "packaging==23.1",
-    "proto-plus==1.22.3",
-    "protobuf==4.24.0",
-    "pyasn1==0.5.0",
-    "pyasn1-modules==0.3.0",
-    "python-dateutil==2.8.2",
-    "requests==2.31.0",
-    "rsa==4.9",
-    "six==1.16.0",
-    "typing-extensions==4.7.1",
-    "urllib3==1.26.16"
-]
+# bigquery = [
+#     # SQLAlchemy dialect for BigQuery
+#     "pybigquery==0.10.2" if python_version in [
+#         "3.8", "3.9"] else "pybigquery" if python_version in [
+#             "3.10", "3.11"] else "pybigquery",
+#     "cachetools",
+#     "certifi<=2024.6.2",
+#     "charset-normalizer<=3.3.2",
+#     "future",
+#     "google-api-core",
+#     "google-auth",
+#     "google-cloud-bigquery",
+#     "google-cloud-core",
+#     "google-resumable-media",
+#     "googleapis-common-protos",
+#     "google-crc32c",
+#     "grpcio",
+#     "grpcio-status",
+#     "idna<=3.7",
+#     "packaging<=24.1",
+#     "proto-plus",<=2.32.3
+#     "protobuf",
+#     "pyasn1",
+#     "pyasn1-modules",
+#     "requests<=2.32.3",
+#     "rsa",
+#     "urllib3<=1.26.19"
+# ]
 
 snowflake = [
     # Snowflake Connector Library
-    "snowflake-connector-python==3.1.0",
+    "snowflake-connector-python<=3.11.0",
     # Snowflake SQLAlchemy Dialect
-    "snowflake-sqlalchemy==1.4.7",
-    "pyjwt==2.8.0",
-    "sqlalchemy==1.4.49",
-    "asn1crypto==1.5.1",
-    "certifi==2023.7.22",
-    "cffi==1.15.1",
-    "charset-normalizer==3.2.0",
-    "cryptography==41.0.3",
-    "filelock==3.12.2",
-    "greenlet==2.0.2",
-    "idna==3.4",
-    "oscrypto==1.3.0",
-    "packaging==23.1",
-    "platformdirs==3.8.1",
-    "pyOpenSSL==23.2.0",
-    "pycparser==2.21",
-    "pycryptodomex==3.18.0",
-    "pyjwt==2.8.0",
-    "requests==2.31.0",
-    "sortedcontainers==2.4.0",
-    "tomlkit==0.12.1",
-    "typing-extensions==4.7.1",
-    "urllib3==1.26.16"
+    "snowflake-sqlalchemy<=1.5.3",
+    "pyjwt<=2.8.0",
+    "asn1crypto<=1.5.1",
+    "certifi<=2024.6.2",
+    "cffi<=1.16.0",
+    "charset-normalizer<=3.3.2",
+    "cryptography<=42.0.8",
+    "filelock<=3.15.4",
+    "idna<=3.7",
+    "oscrypto<=1.3.0",
+    "packaging<=24.1",
+    "platformdirs<=4.2.2",
+    "pyOpenSSL<=24.1.0",
+    "pycparser<=2.22",
+    "pycryptodomex<=3.20.0",
+    "requests<=2.32.3",
+    "sortedcontainers<=2.4.0",
+    "tomlkit<=0.12.5",
+    "urllib3<=1.26.19"
 ]
 
 redshift = postgres = [
     # PostgreSQL interface library.
-    "psycopg2-binary==2.9.7"
+    "psycopg2-binary<=2.9.9"
 ]
 
 mysql = [
     # Pure Python MySQL Driver
-    "pymysql==1.1.0"
+    "pymysql<=1.1.1"
 ]
 
 salesforce = [
     # A basic Salesforce.com REST API client.
-    "simple-salesforce==1.12.4",
-    "pyjwt==2.8.0",
-    "attrs==23.1.0",
-    "certifi==2023.7.22",
-    "cffi==1.15.1",
-    "charset-normalizer==3.2.0",
-    "cryptography==41.0.3",
-    "idna==3.4",
-    "isodate==0.6.1",
-    "lxml==4.9.3",
-    "platformdirs==3.8.1",
-    "pycparser==2.21",
-    "pytz==2023.3",
-    "requests==2.31.0",
-    "requests-file==1.5.1",
-    "requests-toolbelt==1.0.0",
-    "six==1.16.0",
-    "urllib3==1.26.16",
-    "zeep==4.2.1"
+    "simple-salesforce<=1.12.6",
+    "pyjwt<=2.8.0",
+    "attrs<=23.2.0",
+    "certifi<=2024.6.2",
+    "cffi<=1.16.0",
+    "charset-normalizer<=3.3.2",
+    "cryptography<=42.0.8",
+    "idna<=3.7",
+    "isodate<=0.6.1",
+    "lxml<=5.2.2",
+    "more-itertools<=10.3.0",
+    "platformdirs<=4.2.2",
+    "pycparser<=2.22",
+    "requests<=2.32.3",
+    "requests-file<=2.1.0",
+    "requests-toolbelt<=1.0.0",
+    "urllib3<=1.26.19",
+    "zeep<=4.2.1"
 ]
 
 databricks = [
-    "databricks-sql-connector==2.9.6",
-    "certifi==2023.7.22",
-    "sqlalchemy==1.4.49",
-    "charset-normalizer==3.2.0",
-    "et-xmlfile==1.1.0",
-    "greenlet==2.0.2",
-    "idna==3.4",
-    "lz4==4.3.3",
-    "numpy==1.24.4" if python_version in [
-        "3.8"] else "numpy==1.25.2" if python_version in [
-            "3.9", "3.10", "3.11"] else "numpy",
-    "oauthlib==3.2.2",
-    "openpyxl==3.1.2",
-    "pandas==2.0.3",
-    "pyarrow==14.0.2",
-    "python-dateutil==2.8.2",
-    "pytz==2023.3",
-    "six==1.16.0",
-    "requests==2.31.0",
-    "typing-extensions==4.7.1",
-    "tzdata==2023.3",
-    "urllib3==1.26.16",
-    "thrift==0.16.0"
+    "databricks-sql-connector<=3.2.0",
+    "certifi<=2024.6.2",
+    "charset-normalizer<=3.3.2",
+    "et-xmlfile<=1.1.0",
+    "idna<=3.7",
+    "lz4<=4.3.3",
+    "oauthlib<=3.2.2",
+    "openpyxl<=3.1.5",
+    "pyarrow<=16.1.0",
+    "requests<=2.32.3",
+    "urllib3<=1.26.19",
+    "thrift<=0.20.0"
 ]
 
 synapse = [
-    "pyodbc==5.1.0"
+    "pyodbc<=5.1.0"
 ]
 
 db2 = [
-    "ibm-db-sa==0.4.0",
-    "ibm_db==3.2.3",
-    "sqlalchemy==1.4.49",
-    "greenlet==2.0.2",
-    "typing-extensions==4.7.1",
+    "ibm-db-sa<=0.4.0",
+    "ibm_db<=3.2.3"
 ]
 
 dynamodb = [
-    "PyDynamoDB==0.5.7",
-    "boto3==1.28.22",
-    "botocore==1.31.22",
-    "jmespath==1.0.1",
-    "pyparsing==3.1.1",
-    "python-dateutil==2.8.2",
-    "s3transfer==0.6.1",
-    "six==1.16.0",
-    "tenacity==8.3.0",
-    "urllib3==1.26.16"
+    "PyDynamoDB<=0.6.1",
+    "boto3<=1.34.137",
+    "botocore<=1.34.137",
+    "jmespath<=1.0.1",
+    "pyparsing<=3.1.2",
+    "s3transfer<=0.10.2",
+    "tenacity<=8.4.2",
+    "urllib3<=1.26.19"
 ]
 
 
@@ -263,12 +233,10 @@ extras = {
     "mariadb": mysql,
     "salesforce": salesforce,
     "databricks": databricks,
-    "gcp": gcp,
-    "bigquery": (gcp + bigquery),
     "synapse": synapse,
     "db2": db2,
     "dynamodb": dynamodb,
-    "all": (snowflake + aws + postgres + redshift + mysql + salesforce + gcp + bigquery + databricks + synapse + db2)
+    "all": (snowflake + aws + postgres + redshift + mysql + salesforce + databricks + synapse + db2)
 }
 
 install_requires = base
@@ -358,7 +326,7 @@ def do_setup():
         long_description_content_type="text/markdown",
         keywords=["python", "os independent", "database", "sqlalchemy",
                   "sqlite3", "sqlite", "postgres", "mysql", "maridb",
-                  "snowflake", "bigquery", "gcp", "aws", "s3select", "salesforce"],
+                  "snowflake", "aws", "s3select", "salesforce"],
         author="Ankit Shrivastava",
         url="https://github.com/shrivastava-v-ankit/connector-factory",
         packages=find_packages(include=[__NAME__.replace("-", "_")]),
@@ -367,7 +335,7 @@ def do_setup():
         install_requires=install_requires,
         extras_require=extras,
         license="MIT",
-        python_requires=">=3.8, <3.12",
+        python_requires=">3.8, <3.13",
         platforms="any",
         cmdclass={
             'list_extras': List_Extras,

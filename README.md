@@ -16,7 +16,6 @@ Connector factory is wrapper on various sources and for database source it uses 
 ```bash
 * Sqlite3
 * PostgreSQl
-* BigQuery (Upcomming)
 * Snowflake
 * MariaDB
 * MySQL
@@ -56,8 +55,10 @@ By default connector-factory is installed with only SQlite3 support only. For ot
 * synapse
 * db2
 * dynamodb
-* bigquery (upcomming)
 * all (For all supported types)
+```
+pip install connector-factory["postgres"]
+```
 
 
 ### Using connector-factory
@@ -385,15 +386,15 @@ if rows_copy:
 ```bash
 python3 -m venv venv
 source env/bin/activate
-pip install .[all]
+pip install .["all"]
 ```
 
 ### Contributing
 
 1. Fork repo- https://github.com/shrivastava-v-ankit/connector-factory.git
 2. Create your feature branch - `git checkout -b feature/name`
-3. Install Python packages under all virtual environments of Python 3.8, 3.9, 3.10, 3.11
-    * pip install .[all]
+3. Install Python packages under all virtual environments of Python 3.9, 3.10, 3.11, 3.12
+    * pip install .["all"]
     * pip install coverage==7.2.3
     * pip install exceptiongroup==1.1.1
     * pip install pluggy==1.0.0
@@ -401,10 +402,6 @@ pip install .[all]
     * pip install pytest-cov==4.0.0
     * pip install tomli==2.0.1
 4. Run Python test (pytest)
-    * For Python 3.8:
-      ```python
-      pytest -v --cov --cov-report=html:test-results/connection_factory_test/htmlcov.3.8 --cov-report=xml:test-results/connection_factory_test/coverage.3.8.xml --junitxml=test-results/connection_factory_test/results.3.8.xml
-      ```
     * For Python 3.9:
       ```python
       pytest -v --cov --cov-report=html:test-results/connection_factory_test/htmlcov.3.9 --cov-report=xml:test-results/connection_factory_test/coverage.3.9.xml --junitxml=test-results/connection_factory_test/results.3.9.xml
@@ -417,6 +414,11 @@ pip install .[all]
       ```python
       pytest -v --cov --cov-report=html:test-results/connection_factory_test/htmlcov.3.11 --cov-report=xml:test-results/connection_factory_test/coverage.3.11.xml --junitxml=test-results/connection_factory_test/results.3.11.xml
       ```
+    * For Python 3.12:
+      ```python
+      pytest -v --cov --cov-report=html:test-results/connection_factory_test/htmlcov.3.12 --cov-report=xml:test-results/connection_factory_test/coverage.3.12.xml --junitxml=test-results/connection_factory_test/results.3.12.xml
+      ```
+
 5. Add Python test (pytest) and covrage report for new/changed feature generated under test-results/connection_factory_test/
 6. Commit your changes - `git commit -am "Added name"`
 7. Push to the branch - `git push origin feature/name`
