@@ -28,7 +28,7 @@ SUPPORTED_ENGINE = ["postgre",
                     "dynamodb"
                     ]
 
-SUPPORTED_SECRET_MANAGER_CLOUD = ["aws", "gcp"]
+# SUPPORTED_SECRET_MANAGER_CLOUD = ["aws", "gcp"]
 
 
 class ConnectorFactory(object):
