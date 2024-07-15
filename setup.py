@@ -127,7 +127,7 @@ snowflake = [
     # Snowflake Connector Library
     "snowflake-connector-python<=3.11.0",
     # Snowflake SQLAlchemy Dialect
-    "snowflake-sqlalchemy<=1.5.3",
+    "snowflake-sqlalchemy<=1.6.1",
     "pyjwt<=2.8.0",
     "asn1crypto<=1.5.1",
     "certifi<=2024.6.2",
@@ -236,7 +236,7 @@ extras = {
     "synapse": synapse,
     "db2": db2,
     "dynamodb": dynamodb,
-    "all": (snowflake + aws + postgres + redshift + mysql + salesforce + databricks + synapse + db2)
+    "all": (snowflake + aws + postgres + redshift + mysql + salesforce + databricks + synapse + db2 + dynamodb)
 }
 
 install_requires = base
