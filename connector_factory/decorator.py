@@ -5,6 +5,7 @@ import logging
 from abc import ABC, abstractmethod
 import pandas
 import atexit
+from sqlalchemy import text
 
 
 logger = logging.getLogger(__name__)
@@ -112,7 +113,7 @@ class Decorator(ABC):
 
         rows = None
 
-        result = self.session.execute(sql)
+        result = self.session.execute(text(sql))
         if result.returns_rows:
             rows = result.fetchall()
         else:

@@ -160,7 +160,7 @@ class S3Select(Decorator):
 
     def get_df(self, sql: str = None, chunk_size: int = None):
         bucket = self.config.get("bucket", None)
-        # file = self.config.get("file", None)
+        file = self.config.get("file", None)
         file_type = self.config.get("type", None)
         compression = self.config.get("compression", "NONE")
         compression = compression.upper()
